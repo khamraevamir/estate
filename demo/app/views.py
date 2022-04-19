@@ -4,9 +4,27 @@ from users.forms import CustomUserCreationForm
 from django.http import HttpResponse
 from django.core.exceptions import ValidationError
 from users.forms import CustomUserCreationForm
+from . models import *
 
 def index(request):
-    return render(request, 'pages/index.html')
+    flats = Flat.objects.order_by('-id')
+    return render(request, 'pages/index.html', {'flats':flats})
+
+
+def about(request):
+    return render(request, 'pages/about.html')
+
+
+def category_detail(request):
+    return render(request, 'pages/category-detail.html')
+
+
+def product_detail(request):
+    return render(request, 'pages/product-detail.html')
+
+
+def user_index(request):
+    return render(request, 'pages/user/index.html')
 
 
 def sign_in(request):
